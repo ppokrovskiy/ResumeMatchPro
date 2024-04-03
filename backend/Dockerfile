@@ -26,13 +26,13 @@ COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 #
-COPY ./app app
+COPY application application
 COPY ./alembic alembic
 COPY ./start.sh start.sh
 
 #
-# ARG DATABASE_URL
-# ENV DATABASE_URL $DATABASE_URL
+ARG APP_DATABASE_URL
+ENV APP_DATABASE_URL $APP_DATABASE_URL
 
 # run on port 8000 by default. to change add "--port", "80"
 CMD ["./start.sh"]
